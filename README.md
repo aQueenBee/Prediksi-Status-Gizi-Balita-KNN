@@ -58,10 +58,10 @@ pip install -r requirements.txt
 
 ### Langkah 3: Menjalankan Aplikasi
 Setelah instalasi selesai, jalankan aplikasi menggunakan perintah berikut:
-```
+
 bash
 Copy code
-
+```
 streamlit run streamlit_app.py
 Setelah perintah dijalankan, aplikasi akan terbuka di browser Anda pada alamat http://localhost:8501.
 ```
