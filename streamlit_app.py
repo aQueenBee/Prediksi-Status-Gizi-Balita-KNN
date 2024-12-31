@@ -10,7 +10,7 @@ st.info("Streamlit adalah framework berbasis Python untuk membuat aplikasi web i
 
 # Deskripsi Aplikasi
 st.markdown("""
-Aplikasi ini dirancang untuk membantu tenaga kesehatan atau peneliti di bidang gizi anak dalam:
+Aplikasi ini dirancang untuk membantu tenaga kesehatan atau peneliti di bidang gizi anak.
 """)
 
 # Tujuan Aplikasi
