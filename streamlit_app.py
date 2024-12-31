@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 import pickle
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
 import io
  
  
