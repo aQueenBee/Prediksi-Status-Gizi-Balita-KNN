@@ -3,8 +3,7 @@ import pandas as pd
 import pickle
 import numpy as np
 import io
- 
- 
+
 # Judul Aplikasi
 st.title("Aplikasi Prediksi Status Gizi Balita")
 st.info("Streamlit adalah framework berbasis Python untuk membuat aplikasi web interaktif dengan fokus pada data science dan machine learning.")
@@ -28,7 +27,7 @@ st.markdown("""
    - Gizi lebih (overweight)
    - Obesitas (obese)
 3. **Mengatasi ketidakseimbangan kelas gizi menggunakan teknik:**  
-   - SMOTE 
+   - SMOTE
 """)
 
 # Sidebar untuk Pemilihan Algoritma
@@ -59,34 +58,18 @@ def load_scaler(scaler_path):
         scaler = pickle.load(scaler_file)
     return scaler
 
-# Upload Data
-st.subheader("Unggah Dataset")
-uploaded_file = st.file_uploader("Pilih file CSV untuk dataset", type=["csv"])
+# Memuat model KNN dan scaler
+try:
+    model = load_model("knn_model.pkl")
+    scaler = load_scaler("scaler.pkl")
+except Exception as e:
+    st.error(f"Terjadi kesalahan saat memuat model atau scaler: {e}")
 
-if uploaded_file is not None:
-    # Load dataset
-    data = pd.read_csv(uploaded_file)
-    st.write("Dataset yang diunggah:", data.head())
-
-    # Menampilkan jumlah baris dan kolom
-    st.write(f"Jumlah Baris: {data.shape[0]}")
-    st.write(f"Jumlah Kolom: {data.shape[1]}")
-
-
-    # Memuat model KNN dan scaler
-    try:
-        model = load_model("knn_model.pkl")
-        scaler = load_scaler("scaler.pkl")
-        st.success("Model KNN dan Scaler berhasil dimuat!")
-    except Exception as e:
-        st.error(f"Terjadi kesalahan saat memuat model atau scaler: {e}")
-
-
-    # Form input data balita
-    st.subheader("Input Data Balita")
-    usia = st.number_input("Usia (dalam bulan)", min_value=0, step=1)
-    berat_badan = st.number_input("Berat Badan (dalam kg)", min_value=0.1, step=0.1)
-    tinggi_badan = st.number_input("Tinggi Badan (dalam cm)", min_value=0.1, step=0.1)
+# Form input data balita
+st.subheader("Input Data Balita")
+usia = st.number_input("Usia (dalam bulan)", min_value=0, step=1)
+berat_badan = st.number_input("Berat Badan (dalam kg)", min_value=0.1, step=0.1)
+tinggi_badan = st.number_input("Tinggi Badan (dalam cm)", min_value=0.1, step=0.1)
 
 if st.button("Prediksi Status Gizi"):
     # Normalisasi data input menggunakan scaler yang dimuat
@@ -124,4 +107,3 @@ if st.button("Prediksi Status Gizi"):
         st.info("Rekomendasi: Kurangi konsumsi makanan tinggi kalori dan perbanyak aktivitas fisik.")
     elif predicted_status == 'Obesitas':
         st.info("Rekomendasi: Konsultasikan dengan ahli gizi untuk mendapatkan program diet yang tepat.")
-
