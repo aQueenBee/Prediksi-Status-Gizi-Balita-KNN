@@ -67,9 +67,9 @@ except Exception as e:
 
 # Form input data balita
 st.subheader("Input Data Balita")
-usia = st.number_input("Usia (dalam bulan)", min_value=0, step=1)
-berat_badan = st.number_input("Berat Badan (dalam kg)", min_value=0.1, step=0.1)
-tinggi_badan = st.number_input("Tinggi Badan (dalam cm)", min_value=0.1, step=0.1)
+usia = st.number_input("Usia (dalam bulan contoh: 24)", min_value=0, step=1)
+berat_badan = st.number_input("Berat Badan (dalam kg contoh: 16.65)", min_value=0.1, step=0.1)
+tinggi_badan = st.number_input("Tinggi Badan (dalam cm contoh: 89.70)", min_value=0.1, step=0.1)
 
 if st.button("Prediksi Status Gizi"):
     # Normalisasi data input menggunakan scaler yang dimuat
