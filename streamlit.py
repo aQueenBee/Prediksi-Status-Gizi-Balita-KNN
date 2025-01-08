@@ -13,22 +13,22 @@ st.markdown("""
 Aplikasi ini dirancang untuk membantu tenaga kesehatan atau peneliti di bidang gizi anak.
 """)
 
-# # Tujuan Aplikasi
-# st.subheader("Tujuan Aplikasi")
-# st.markdown("""
-# 1. **Memprediksi status gizi balita**  
-#    Berdasarkan data antropometri seperti berat badan, tinggi badan, lingkar lengan atas (LiLA), dan usia.
-# 2. **Melakukan prediksi status gizi balita**  
-#    Kategori status gizi meliputi:
-#    - Gizi buruk (severely wasted)
-#    - Gizi kurang (wasted)
-#    - Gizi baik (normal)
-#    - Berisiko gizi lebih (possible risk of overweight)
-#    - Gizi lebih (overweight)
-#    - Obesitas (obese)
-# 3. **Mengatasi ketidakseimbangan kelas gizi menggunakan teknik:**  
-#    - SMOTE
-# """)
+# Tujuan Aplikasi
+st.subheader("Tujuan Aplikasi")
+st.markdown("""
+1. **Memprediksi status gizi balita**  
+   Berdasarkan data antropometri seperti berat badan, tinggi badan, lingkar lengan atas (LiLA), dan usia.
+2. **Melakukan prediksi status gizi balita**  
+   Kategori status gizi meliputi:
+   - Gizi buruk (severely wasted)
+   - Gizi kurang (wasted)
+   - Gizi baik (normal)
+   - Berisiko gizi lebih (possible risk of overweight)
+   - Gizi lebih (overweight)
+   - Obesitas (obese)
+3. **Mengatasi ketidakseimbangan kelas gizi menggunakan teknik:**  
+   - SMOTE
+""")
 
 # Sidebar untuk Pemilihan Algoritma
 st.sidebar.header('Algoritma Klasifikasi')
@@ -37,14 +37,14 @@ algorithm = st.sidebar.selectbox(
     ['K-Nearest Neighbor', 'Regresi Linear', 'Naive Bayes']
 )
 
-# # Penjelasan algoritma
-# st.subheader('Penjelasan Algoritma')
-# if algorithm == 'K-Nearest Neighbor':
-#     st.write('K-Nearest Neighbors (KNN) adalah algoritma yang digunakan untuk klasifikasi atau regresi. KNN bekerja dengan mencari data terdekat dan memberikan label berdasarkan mayoritas label dari tetangga terdekat.')
-# elif algorithm == 'Regresi Linear':
-#     st.write('Regresi linear adalah metode statistik yang digunakan untuk memodelkan hubungan antara variabel independen dan dependen.')
-# else:
-#     st.write('Naive Bayes adalah algoritma klasifikasi berbasis probabilitas yang berdasarkan pada Teorema Bayes dengan asumsi independensi antara fitur-fitur.')
+# Penjelasan algoritma
+st.subheader('Penjelasan Algoritma')
+if algorithm == 'K-Nearest Neighbor':
+    st.write('K-Nearest Neighbors (KNN) adalah algoritma yang digunakan untuk klasifikasi atau regresi. KNN bekerja dengan mencari data terdekat dan memberikan label berdasarkan mayoritas label dari tetangga terdekat.')
+elif algorithm == 'Regresi Linear':
+    st.write('Regresi linear adalah metode statistik yang digunakan untuk memodelkan hubungan antara variabel independen dan dependen.')
+else:
+    st.write('Naive Bayes adalah algoritma klasifikasi berbasis probabilitas yang berdasarkan pada Teorema Bayes dengan asumsi independensi antara fitur-fitur.')
 
 # Fungsi untuk memuat model KNN
 def load_model(model_path):
@@ -65,34 +65,34 @@ try:
 except Exception as e:
     st.error(f"Terjadi kesalahan saat memuat model atau scaler: {e}")
 
-# def convert_age_to_months(years, months, days):
-#     """
-#     Konversi usia dalam tahun, bulan, dan hari menjadi jumlah bulan.
+def convert_age_to_months(years, months, days):
+    """
+    Konversi usia dalam tahun, bulan, dan hari menjadi jumlah bulan.
     
-#     Args:
-#         years (int): Usia dalam tahun.
-#         months (int): Usia dalam bulan.
-#         days (int): Usia dalam hari.
+    Args:
+        years (int): Usia dalam tahun.
+        months (int): Usia dalam bulan.
+        days (int): Usia dalam hari.
         
-#     Returns:
-#         int: Usia dalam bulan.
-#     """
-#     # Asumsikan 1 bulan = 30 hari untuk menghitung jumlah bulan dari hari
-#     months_from_days = days // 30
-#     total_months = (years * 12) + months + months_from_days
-#     return total_months
+    Returns:
+        int: Usia dalam bulan.
+    """
+    # Asumsikan 1 bulan = 30 hari untuk menghitung jumlah bulan dari hari
+    months_from_days = days // 30
+    total_months = (years * 12) + months + months_from_days
+    return total_months
 
-# st.subheader("Input Usia Balita Untuk di Konversi")
-# st.markdown("Masukkan usia balita dalam format tahun, bulan, dan hari.")
+st.subheader("Input Usia Balita Untuk di Konversi")
+st.markdown("Masukkan usia balita dalam format tahun, bulan, dan hari.")
 
-# # Input usia dalam tahun, bulan, dan hari
-# years = st.number_input("Tahun (contoh: 2)", min_value=0, step=1)
-# months = st.number_input("Bulan (contoh: 3)", min_value=0, step=1)
-# days = st.number_input("Hari (contoh: 15)", min_value=0, step=1)
+# Input usia dalam tahun, bulan, dan hari
+years = st.number_input("Tahun (contoh: 2)", min_value=0, step=1)
+months = st.number_input("Bulan (contoh: 3)", min_value=0, step=1)
+days = st.number_input("Hari (contoh: 15)", min_value=0, step=1)
 
-# # Konversi ke bulan
-# usia = convert_age_to_months(years, months, days)
-# st.write(f"Usia dalam bulan: {usia}")
+# Konversi ke bulan
+usia = convert_age_to_months(years, months, days)
+st.write(f"Usia dalam bulan: {usia}")
 
 
 # Form input data balita
